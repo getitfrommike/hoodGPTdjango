@@ -4,3 +4,6 @@
 # Ignore other sensitive files
 *.key
 *.pem
+# Ignore Python cache
+__pycache__/
+*.pyc
