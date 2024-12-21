@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HoodGPT Chatbox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f4f4f4;
+            position: relative;
+            z-index: 1;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal overflow */
+        }
+
+        /* Global box-sizing to ensure padding and borders are included in element dimensions */
+        *, *::before, *::after {
+            box-sizing: inherit;
+        }
+
+        /* Navbar Styling */
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.9); /* Dark transparent background for navbar */
+            color: #fff;
+            padding: 15px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        .navbar ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar ul li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Background image with fixed position and full coverage */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: url("{% static 'hoodGPT_app/images/GOODLOO.png' %}") no-repeat center center;
+            background-size: cover;
+            opacity: 1; /* Subtle background */
+            z-index: -1;
+        }
+
+        /* Responsive container */
+        .container {
+            max-width: 100%;
+            width: 90%; /* Default width for smaller screens */
+            padding: 80px 20px 20px 20px; /* Adjust padding-top to account for navbar */
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0); /* Optional: add background */
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #444;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            width: 100%;
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 100%; /* Ensure it spans the container */
+            height: 150px;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: none;
+            background-color: #fff;
+        }
+
+        button {
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #074a0a;
+        }
+
+        /* Enhanced response section styling */
+        .response {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .response h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #444;
+            font-weight: 500;
+        }
+
+        .response-box {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: left; /* Align the text for readability */
+            border-left: 4px solid #4CAF50; /* Stylish left border */
+        }
+
+        .response-box p {
+            color: #333;
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 0;
+            word-wrap: break-word;
+        }
+
+        .response-box p:last-child {
+            margin-bottom: 0; /* Avoid unnecessary space at the end */
+        }
+
+        /* Footer styling */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Media Queries for responsiveness */
+        @media (min-width: 768px) {
+            .container {
+                width: 70%; /* Wider container on tablets */
+            }
+
+            h1 {
+                font-size: 32px;
+            }
+
+            .response-box {
+                max-width: 80%;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .container {
+                width: 50%; /* Even wider on desktops */
+            }
+
+            h1 {
+                font-size: 36px;
+            }
+
+            .response-box {
+                max-width: 70%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <h1>THUG CODING® - hoodGPT</h1>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="{% url 'store' %}"target="_blank">Store</a></li>
+            <li><a href="#Blog">Blog</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <h1></h1>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}  <!-- This will render the form -->
+            <button type="submit">Submit</button>
+        </form>
+
+        {% if response_text %}
+            <div class="response">
+                <h2>AI Response</h2>
+                <div class="response-box">
+                    <p>{{ response_text }}</p>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 HoodGPT. All rights reserved.</p>
+    </div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thug Coding Store</title>
+        <!-- Load static tag for loading static files -->
+        {% load static %}
+</head>
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        background: url("{% static 'hoodGPT_app/images/THEstoreBG.PNG' %}") no-repeat center center fixed; 
+        background-size: cover; /* Ensures the background covers the entire page */
+    }
+
+    h1 {
+        text-align: center;
+        color: #fff;
+        margin-top: 50px;
+    }
+
+    p {
+        color: #000000;
+        padding: 20px;
+        text-align: center;
+    }
+
+     /* Styling for the image button */
+    .button-img {
+        width: 250px;  /* Adjust the size of the button */
+        height: auto;
+        cursor: pointer;  /* Makes the image behave like a button */
+        opacity: 0.8;  /* Default opacity */
+        transition: opacity 0.3s ease;  /* Smooth transition on hover */
+    }
+
+    /* Change opacity when hovering */
+    .button-img:hover {
+        opacity: 1;  /* Fully visible when hovered */
+    }
+
+    /* Styling for container around the image */
+    .button-container {
+        margin-top: 50px;  /* Space at the top */
+        display: inline-block;
+    }
+
+            /* Styling for the image button */
+            .button-img {
+            width: 350px;  /* Adjust the size of the button */
+            height: auto;
+            cursor: pointer;  /* Makes the image behave like a button */
+            opacity: 1;  /* Default opacity */
+            transition: opacity 0.3s ease;  /* Smooth transition on hover */
+        }
+
+        /* Change opacity when hovering */
+        .button-img:hover {
+            opacity: 0.7;  /* Fully visible when hovered */
+        }
+
+        /* Styling for container around the image */
+        .button-container {
+            margin-top: 100px;  /* Adjust top margin to move button down */
+            margin-left: 50px;  /* Adjust left margin to move button right */
+            display: inline-block;
+            text-align: left;  /* Align content to the left */
+        }
+
+               /* Container for store items */
+               .store-container {
+            margin: 40px;
+            display: flex;
+            flex-direction: column;  /* Make products stack vertically */
+            align-items: flex-start;      /* Center-align the products */
+        }
+
+        /* Styling for each product card */
+        .product {
+            margin: 20px;
+            border: 0px solid #ccc;
+            padding: 10px;
+            flex: 1 1 calc(33.333% - 40px);  /* Makes product boxes responsive */
+            box-sizing: border-box;
+            max-width: 300px;  /* Optional: To limit max width */
+        }
+
+        .product img {
+            width: 100%;  /* Ensures the image scales to fit its container */
+            height: auto;  /* Maintains aspect ratio */
+        }
+
+        .product h2 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .product p {
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .product {
+                flex: 1 1 calc(50% - 40px);  /* 2 items per row for tablet and small screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product {
+                flex: 1 1 100%;  /* Single item per row for mobile */
+            }
+        }
+    </style>
+
+
+</style>
+
+<body>
+
+    <h1>Our Products</h1>
+
+    <div class="store-container">
+        <!-- Product 1 -->
+        <div class="product">
+            <a href="https://www.getitfrommike.net/product-page/thug-coding-aphrodite-jones-t-shirt" target="_blank">
+                <img src="{% static 'hoodGPT_app/images/aphroditejones.PNG' %}" alt="Product 1">
+            </a>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product">
+            <a href="https://www.getitfrommike.net/product-page/thug-coding-dub-t-shirt" target="_blank"><img src="{% static 'hoodGPT_app/images/dub.PNG' %}" alt="Product 2">
+
+        </div>
+
+        <!-- Product 3 -->
+        <div class="product">
+            <a href="https://www.getitfrommike.net/product-page/thug-coding-learn-tech-t-shirt" target="_blank"><img src="{% static 'hoodGPT_app/images/tech.PNG' %}" alt="Product 3">
+
+        </div>
+
+        <!-- Add more products as needed -->
+    </div>
+
+      <!-- Button image -->
+      <div class="button-container">
+        <a href="#">  <!-- This can be linked to any action or another page -->
+            <img src="{% static 'hoodGPT_app/images/THUGCODING2019.PNG' %}" class="button-img" alt="Button Image">
+        </a>
+    </div>
+    
+  
+    
+    <p>iykyk...</p>
+</body>
+</html>
